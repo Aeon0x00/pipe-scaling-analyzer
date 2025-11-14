@@ -1,0 +1,2 @@
+postgres://postgres:postgres@localhost:5432/pipe_analyzer?sslmode=disable
+curl -X POST http://localhost:8080/api/pipes -d '{"name":"truba-1","diameter":159,"wall_size":8}'
