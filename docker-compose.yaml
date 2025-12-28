@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: pipe_analyzer
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  migrate:
+    image: migrate/migrate:v4.17.0
+    volumes:
+      - ./migrations:/migrations
+    command: ["-path", "/migrations", "-database", "postgres://postgres:postgres@postgres:5432/pipe_analyzer?sslmode=disable", "up"]
+    depends_on:
+      - postgres
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+volumes:
+  pgdata:
