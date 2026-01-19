@@ -3,7 +3,6 @@ package httpserver
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"net/http"
 	"pipe-scaling-analyzer/internal/domain"
 	"pipe-scaling-analyzer/internal/usecase"
@@ -37,7 +36,6 @@ func (h *HTTPHandlers) HandleCreatePipe(w http.ResponseWriter, r *http.Request) 
 		http.Error(w, errDTO.ToString(), http.StatusBadRequest)
 		return
 	}
-	fmt.Println("create pipe dto:", dto)
 
 
 	pipe, err := h.us.CreatePipe(r.Context(), dto)

@@ -34,7 +34,6 @@ func NewRedisCache (addr, password string, logger *zap.SugaredLogger) *RedisCach
 }
 func (c *RedisCache) GetPipeStatus(ctx context.Context, pipeId string) (*domain.PipeStatusDTO, error) {
 	key := fmt.Sprintf("pipe:status:%s", pipeId)
-	fmt.Println("ищем в редисе ключ:", key)
 	
 	val, err := c.client.Get(ctx, key).Result()
 	if err != nil {
@@ -69,7 +68,6 @@ func (c *RedisCache) SetPipeStatus(ctx context.Context, status domain.PipeStatus
 		
 		return err
 	}
-	fmt.Println("записали в редис:", key)
 	return  nil
 }
 

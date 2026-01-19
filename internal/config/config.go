@@ -2,7 +2,6 @@ package config
 
 import (
 	"errors"
-	"fmt"
 	"os"
 	"github.com/joho/godotenv"
 )
@@ -21,7 +20,6 @@ func Load() (*Config, error) {
 	_ = godotenv.Load(".env")
 	
 	dsn := os.Getenv("POSTGRES_DSN")
-	fmt.Println("dsn:", dsn)
 
 	if dsn == "" {
 		return nil, errors.New("POSTGRES_DSN environment variable is required")

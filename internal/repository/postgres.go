@@ -3,7 +3,6 @@ package repository
 import (
 	"context"
 	"errors"
-	"fmt"
 	"pipe-scaling-analyzer/internal/domain"
 	"time"
 
@@ -24,7 +23,6 @@ func NewPostgresRepo (db *pgxpool.Pool,logger *zap.SugaredLogger) *PostgresRepo 
 	}
 }
 func (r *PostgresRepo) CreatePipe(ctx context.Context, pipe domain.Pipe) error {
-	fmt.Println("создаем трубу:", pipe.Name)
 	sqlQuery := `
 	INSERT INTO pipes (id, name, diameter, wall_size, max_layer_mm, created_at)
 	VALUES ($1, $2, $3, $4, $5, $6);
@@ -124,7 +122,6 @@ func (r *PostgresRepo) ListPipes(ctx context.Context) ([]domain.Pipe, error) {
 
 		pipes = append(pipes, p)
 	}
-	fmt.Println("найдено труб:", len(pipes))
 	return  pipes, nil
 }
 

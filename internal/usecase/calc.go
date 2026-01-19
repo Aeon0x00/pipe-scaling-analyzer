@@ -1,7 +1,6 @@
 package usecase
 
 import (
-	"fmt"
 	"math"
 	"pipe-scaling-analyzer/internal/domain"
 )
@@ -12,7 +11,6 @@ func evalLayerWithCoeffs (energy, duration float64, coeffs *domain.CalibrationCo
 	}
 	
 	val := coeffs.BaseOffset - (energy * coeffs.EnergyWeight) - (duration * coeffs.DurationWeight)
-	fmt.Println("посчитали слой:", val)
 	if val < 0 {
 		return 0
 	}
