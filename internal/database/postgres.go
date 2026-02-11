@@ -18,6 +18,5 @@ func NewPostgresPool (ctx context.Context, dsn string) (*pgxpool.Pool, error) {
 	if err := pool.Ping(ctx); err != nil {
 		return  nil, fmt.Errorf("failed to ping postgres: %w",err)
 	}
-	fmt.Println("база подключена!")
 	return pool, nil
 }

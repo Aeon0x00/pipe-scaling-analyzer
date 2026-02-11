@@ -74,7 +74,6 @@ func (us *UseCase) DeletePipe(ctx context.Context, pipeId string) error {
 
 
 func (us *UseCase) CalculateScaling(ctx context.Context, req domain.CalcRequestDTO) (*domain.CalcResult, error) {
-	fmt.Println("пришел запрос на расчет трубы:", req.PipeId, "точек:", len(req.Points))
 	if len(req.Points) == 0 {
 		return nil, domain.ErrEmptyPoints
 	}
@@ -91,7 +90,6 @@ func (us *UseCase) CalculateScaling(ctx context.Context, req domain.CalcRequestD
 
 
 	avgE, avgD, topE, topD, botE, botD := splitAndAvgPoints(req.Points)
-	fmt.Println("средние значения:", avgE, avgD)
 
 	var topLayer, botLayer, avgLayer float64
 	var daysLeft int
