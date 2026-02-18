@@ -82,6 +82,15 @@ func (r *PostgresRepo) GetCalibrationCoeffs(ctx context.Context, diameter, wallS
 		&c.BaseOffset,
 	)
 	if err != nil {
+		if errors.Is(err, pgx.ErrNoRows) {
+			return &domain.CalibrationCoeffs{
+				Diameter:       diameter,
+				WallSize:       wallSize,
+				EnergyWeight:   0.085,
+				DurationWeight: 0.092,
+				BaseOffset:     16.5,
+			}, nil
+		}
 		return nil, err
 	}
 

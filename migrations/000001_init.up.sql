@@ -61,3 +61,10 @@ CREATE TABLE IF NOT EXISTS pipe_alerts (
 );
 
 CREATE INDEX IF NOT EXISTS idx_calc_results_pipe_id ON calc_results(pipe_id, created_at DESC);
+
+INSERT INTO pipe_calibrations (diameter, wall_size, energy_weight, duration_weight, base_offset)
+VALUES
+    (159, 8, 0.085, 0.092, 16.5),
+    (159, 10, 0.082, 0.089, 16.2),
+    (108, 6, 0.090, 0.095, 15.8),
+    (73, 6, 0.098, 0.102, 15.2);
